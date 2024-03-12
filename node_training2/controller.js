@@ -43,8 +43,11 @@ export const personListController = async (req, res) => {
 export const personAddController = async (req, res) => {
     console.log(`/add 요청 경로로 요청됨`);
 
-    const params = req.query;
-
+    console.log(`req.query : ${JSON.stringify(req.query)}`);
+    console.log(`req.body : ${JSON.stringify(req.body)}`);
+    
+    let params = req.body;
+ 
     try {
         const rows = await database.execute(sql.personInsert, [`'${params.name}'`, `${params.age}`, `'${params.mobile}'`]);
         sendResponse(res, JSON.stringify(rows));

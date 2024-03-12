@@ -13,6 +13,13 @@
         <p>테스트 03 입니다 </p>
         <input type="button" value="확인" id="startButton">
     </div>
+    <br>
+    <div>
+        <input type="text" id="nameInput">
+        <input type="text" id="ageInput">
+        <input type="text" id="mobileInput">
+        <input type="button" value="추가하기" id="insertButton"> 
+    </div>
 
     <div id="output">
 
@@ -33,6 +40,12 @@
 
                 // const output = document.querySelector('#output');
                 // output.innerHTML = `<p>확인 버튼 클릭 됨.</p>`
+            })
+
+            // 추가하기 버튼 클릭 시
+            const insertButton = document.querySelector('#insertButton');
+            insertButton.addEventListener('click', (e) => {
+                requestPersonInsert();
             })
         }
 
@@ -55,6 +68,39 @@
                 console.error(`에러 -> ${err}`);
             }
         }
+
+        async function requestPersonInsert() {
+            console.log(`requestPersonInsert 호출됨.`);
+
+            const nameInput = document.querySelector('#nameInput')
+            const ageInput = document.querySelector('#ageInput')
+            const mobileInput = document.querySelector('#mobileInput')
+
+            const name = nameInput.value;
+            const age = ageInput.value;
+            const mobile = mobileInput.value;
+
+            try {
+                const response = await axios({
+                    method: 'post',
+                    url: 'http://127.0.0.1:7001/add',
+                    data: {
+                        name : name,
+                        age : age,
+                        mobile : mobile
+                    },
+                })
+
+                console.log(`응답 -> ${JSON.stringify(response.data)}`);
+
+                const output = document.querySelector('#output')
+                output.innerHTML = `<p>${JSON.stringify(response.data)}</p>`;
+
+            } catch (err) {
+                console.error(`에러 -> ${err}`);
+            }
+        }
+
 
     </script>
 </body>
