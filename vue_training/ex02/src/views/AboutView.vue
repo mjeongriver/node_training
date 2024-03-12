@@ -1,5 +1,5 @@
 <template>
   <div class="about">
-    <p>정보 화면입니다.</p>
+    <h1>This is an about page</h1>
   </div>
 </template>

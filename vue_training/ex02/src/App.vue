@@ -3,18 +3,10 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
-
-  <h1 id="title1">내 프로젝트</h1>
-  
   <router-view/>
 </template>
 
 <style>
-
-#title1 {
-  color: #ff0000;
-}
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -36,7 +28,3 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 </style>
-
-<sciprt>
-
-</sciprt>
