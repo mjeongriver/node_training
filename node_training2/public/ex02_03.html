@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>테스트 03</title>
+
+</head>
+
+<body onload="onLoad()">
+
+    <div>
+        <p>테스트 03 입니다</p>
+        <input type="button" value="확인" id="startButton">
+    </div>
+
+    <div id="output">
+
+    </div>
+
+    <!-- axios 사용하기 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"></script>
+
+    <script>
+
+        function onLoad() {
+
+            // 확인 버튼 클릭 시
+            const startButton = document.querySelector('#startButton');
+            startButton.addEventListener('click', (e) => {
+
+                requestPersonList();
+
+                // const output = document.querySelector('#output');
+                // output.innerHTML = `<p>확인 버튼 클릭 됨.</p>`
+            })
+        }
+
+        async function requestPersonList() {
+            console.log(`requestPersonList 호출됨.`);
+
+            try {
+                const response = await axios({
+                    method: 'post',
+                    url: 'http://127.0.0.1:7001/list',
+                    data: {},
+                })
+
+                console.log(`응답 -> ${JSON.stringify(response.data)}`);
+
+                const output = document.querySelector('#output')
+                output.innerHTML = `<p>${JSON.stringify(response.data)}</p>`;
+
+            } catch (err) {
+                console.error(`에러 -> ${err}`);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
