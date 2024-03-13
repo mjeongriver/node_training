@@ -52,7 +52,7 @@
       <div class="card-footer">
         <div class="row d-flex justify-content-end">
           <div class="col-md-3">
-            <button class="btn btn-primary btn-sm">추가</button>
+            <button @click="goToAdd()" class="btn btn-primary btn-sm">추가</button>
           </div>
         </div>
       </div>
@@ -79,6 +79,12 @@ export default {
     this.requestPersonList();
   },
   methods: {
+
+    goToAdd() {
+      this.$router.replace({
+        path: '/add'
+      })
+    },
 
     async requestPersonList() {
       console.log(`requestPersonList 호출됨.`);

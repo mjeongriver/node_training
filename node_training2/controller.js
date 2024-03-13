@@ -83,3 +83,17 @@ export const personDeleteController = async (req, res) => {
     }
 }
 
+export const coffeeshopListController = async (req, res) => {
+    console.log(`/coffeeshop_list 요청 경로로 요청됨`);
+
+    const params = req.query;
+    console.log(`point -> '${params.point}'`)
+
+    try {
+        const rows = await database.execute(sql.coffeeshopList, [`${params.point}`, `${params.point}`]);
+        sendResponse(res, JSON.stringify(rows));
+    } catch (err) {
+        sendError(res, err);
+    }
+}
+
