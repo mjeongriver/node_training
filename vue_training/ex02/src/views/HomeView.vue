@@ -57,8 +57,25 @@
       </li>
     </ul>
 
+    <div>
+      <p class="group1">사용자 이름 : 홍길동1</p>
+      <p :class="groupClass">사용자 이름 : 홍길동2</p> <!-- 변수상자라고 생각하고 밑에 data에 추가하면 group1의 스타일을 같이 적용할 수 있다. -->
+
+      <button @click="chagneClass()">클래스 지정하기</button>
+    </div>
+
   </div>
 </template>
+
+<style>
+.group0 {
+  color: blue;
+}
+
+.group1 {
+  color: red;
+}
+</style>
 
 <script>
 
@@ -86,7 +103,8 @@ export default {
           name: '강아지3',
         },
       ],
-      persons: []
+      persons: [],
+      groupClass: 'group0'
     }
   },
   mounted() { // 이 화면이 로딩될 때 자동으로 호출됨(onload 하고 같은 기능)
@@ -134,6 +152,10 @@ export default {
         path: '/profile',
       })
     },
+
+    chagneClass() {
+      this.groupClass = 'group1';
+    }
 
   }
 }
