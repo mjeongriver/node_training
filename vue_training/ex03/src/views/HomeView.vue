@@ -58,17 +58,34 @@
       </div>
 
     </div>
+    <!-- 지도 -->
+    <GoogleMap style="width:100%; height: 300px" api-key="" :center="{ lat: 37.51555, lng: 127.034983 }" :zoom="{ zoom }">
+      <!-- components로 넣고 태그로 사용 -->
+      <Marker options="{ position: center }"></Marker>
+    </GoogleMap>
+
   </div>
+
 </template>
 
 <style scoped></style>
 
 <script>
+import { GoogleMap, Marker } from 'vue3-google-map';
 
 export default {
   name: 'HomeView',
+  components: {
+    GoogleMap,
+    Marker
+  },
   data() {
     return {
+      center: {
+        lat: 37.51555,
+        lng: 127.034983
+      },
+      zoom: 15,
       persons: []
     }
   },

@@ -11,5 +11,11 @@ export default {
                     WHERE  
                         ST_DISTANCE(ST_GEOMFROMTEXT(?), location) * 111195 < 1000
                     ORDER BY 
-                        DISTANCE`
+                        DISTANCE`,
+    coffeeshopSearch: `SELECT id, NAME, tel, 
+                            ST_X(location) AS longitude,
+                            ST_Y(location) AS latitude,
+                            ST_DISTANCE(ST_GEOMFROMTEXT(?), location) * 111195 AS distance
+                        FROM test.coffeeshop
+                        WHERE NAME like ?`
 }

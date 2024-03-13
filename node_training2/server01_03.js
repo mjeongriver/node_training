@@ -5,7 +5,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
-import { personListController, personAddController, personUpdateController, personDeleteController, personIndexController, coffeeshopListController } from './controller.js'; // 함수 import
+import { personListController, personAddController, personUpdateController, personDeleteController, personIndexController, coffeeshopListController, coffeeshopSearchController } from './controller.js'; // 함수 import
 
 const app = express();
 
@@ -46,6 +46,7 @@ router.route('/delete').get(personDeleteController);
 router.route('/delete').post(personDeleteController);
 
 router.route('/coffeeshop_list').get(coffeeshopListController);
+router.route('/coffeeshop_search').get(coffeeshopSearchController);
 
 http.createServer(app).listen(7001, () => {
     console.log(`웹서버 실행됨.`);

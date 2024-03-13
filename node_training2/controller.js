@@ -45,9 +45,9 @@ export const personAddController = async (req, res) => {
 
     console.log(`req.query : ${JSON.stringify(req.query)}`);
     console.log(`req.body : ${JSON.stringify(req.body)}`);
-    
+
     let params = req.body;
- 
+
     try {
         const rows = await database.execute(sql.personInsert, [`'${params.name}'`, `${params.age}`, `'${params.mobile}'`]);
         sendResponse(res, JSON.stringify(rows));
@@ -91,6 +91,21 @@ export const coffeeshopListController = async (req, res) => {
 
     try {
         const rows = await database.execute(sql.coffeeshopList, [`${params.point}`, `${params.point}`]);
+        sendResponse(res, JSON.stringify(rows));
+    } catch (err) {
+        sendError(res, err);
+    }
+}
+
+export const coffeeshopSearchController = async (req, res) => {
+    console.log(`/coffeeshop_search 요청 경로로 요청됨`);
+
+    const params = req.query;
+    console.log(`point -> '${params.point}'`)
+    console.log(`name -> '${params.name}'`)
+
+    try {
+        const rows = await database.execute(sql.coffeeshopSearch, [`${params.point}`, `${params.name}%`]);
         sendResponse(res, JSON.stringify(rows));
     } catch (err) {
         sendError(res, err);
