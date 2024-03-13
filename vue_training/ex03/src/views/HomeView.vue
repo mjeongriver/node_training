@@ -61,8 +61,10 @@
     <!-- 지도 -->
     <GoogleMap style="width:100%; height: 300px" api-key="" :center="{ lat: 37.51555, lng: 127.034983 }" :zoom="{ zoom }">
       <!-- components로 넣고 태그로 사용 -->
-      <Marker options="{ position: center }"></Marker>
+      <Marker v-for="(coffeeshop, index) in coffeeshopList" :key="index" :options="{ position: {lat: coffeeshop.latitude, lng: coffeeshop.longitude } }"></Marker>
     </GoogleMap>
+
+    <button @click="requestCoffeeshopList()">커피숍 조회</button>
 
   </div>
 
@@ -81,12 +83,15 @@ export default {
   },
   data() {
     return {
-      center: {
-        lat: 37.51555,
-        lng: 127.034983
-      },
       zoom: 15,
-      persons: []
+      markerOptions: {
+        position: {
+          lat: 37.51555,
+        lng: 127.034983,
+        }
+      },
+      persons: [],
+      coffeeshopList: [],
     }
   },
   mounted() {
@@ -120,6 +125,24 @@ export default {
         console.error(`에러 -> ${err}`);
       }
     },
+
+    async requestCoffeeshopList() {
+      console.log(`requestCoffeeshopList 호출됨.`);
+
+      try {
+        const response = await this.axios({
+          method: 'get',
+          url: 'http://127.0.0.1:7001/coffeeshop_list?point=POINT(127.0357329 37.51555)',
+        })
+
+        console.log(`응답 -> ${JSON.stringify(response.data)}`);
+        this.coffeeshopList = response.data;
+
+      } catch (err) {
+        console.error(`에러 -> ${err}`);
+      }
+    },
+    
 
   }
 }

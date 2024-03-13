@@ -3,7 +3,7 @@ export default {
     personInsert: `insert into test.person(name, age, mobile) values (?, ?, ?)`,
     personUpdate: `update test.person set name = ?, age = ?, mobile = ? where id = ?,`,
     personDelete: `delete from test.person where id = ?`,
-    coffeeshopList: `SELECT id, NAME, tel, 
+    coffeeshopList: `SELECT id, name, tel, 
 	                    ST_X(location) AS longitude,
 	                    ST_Y(location) AS latitude,
 	                    ST_DISTANCE(ST_GEOMFROMTEXT(?), location) * 111195 AS distance
@@ -12,7 +12,7 @@ export default {
                         ST_DISTANCE(ST_GEOMFROMTEXT(?), location) * 111195 < 1000
                     ORDER BY 
                         DISTANCE`,
-    coffeeshopSearch: `SELECT id, NAME, tel, 
+    coffeeshopSearch: `SELECT id, name, tel, 
                             ST_X(location) AS longitude,
                             ST_Y(location) AS latitude,
                             ST_DISTANCE(ST_GEOMFROMTEXT(?), location) * 111195 AS distance
